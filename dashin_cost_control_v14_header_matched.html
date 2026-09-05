@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#111827">
+<title>大信防水｜成本控制計算</title>
+<style>
+:root{--bg:#edf8fb;--card:#ffffff;--text:#0f172a;--muted:#4b5563;--line:#b9d7e5;--good:#0f766e;--bad:#b91c1c;--soft:#d9f1f0;--blue:#0b63b6;--blue-dark:#084c8d;--blue-light:#dff0ff;--tiffany:#49d6d2;--tiffany-dark:#1ea7a4;--tiffany-soft:#dff8f7}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif}
+.app{max-width:720px;margin:0 auto;padding:14px 14px 112px}
+.header{position:static;padding:4px 0 8px}
+.brand{background:#111827;color:white;border-radius:16px;padding:10px;text-align:center}
+.brand-logo{display:block;max-width:230px;width:72%;height:auto;margin:0 auto 6px;background:#fff;border-radius:10px;padding:5px}
+.brand h1{font-size:22px;margin:2px 0 4px;font-weight:900;color:#ffffff;letter-spacing:.5px;text-shadow:0 1px 2px rgba(0,0,0,.10)}
+.brand p{margin:0;color:#eaffff;font-size:12px;font-weight:700;letter-spacing:.2px}.brand::after{content:"";display:block;width:72%;height:5px;margin:10px auto 0;border-radius:999px;background:linear-gradient(90deg,#ffffff 0%,#49D6D2 45%,#0B63B6 100%);opacity:.95}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:15px;margin-top:12px;box-shadow:0 8px 20px rgba(11,99,182,.06)}
+.card h2{font-size:18px;margin:0 0 12px;color:var(--blue-dark)}
+label{display:block;font-weight:800;font-size:14px;margin-top:12px}
+input,textarea,select,button{font:inherit}
+input,textarea,select{width:100%;margin-top:6px;border:1px solid var(--line);border-radius:13px;background:white;padding:13px 14px;min-height:50px;font-size:16px;outline:none}
+textarea{min-height:90px;resize:vertical}
+input:focus,textarea:focus,select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(73,214,210,.28)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.row{display:grid;grid-template-columns:1fr 1fr 46px;gap:8px;align-items:end;margin-top:10px}
+.small{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.55}
+.btn{border:0;border-radius:13px;min-height:48px;padding:0 15px;font-weight:900;cursor:pointer}
+.btn-dark{background:linear-gradient(135deg,var(--blue-dark),var(--blue));color:#fff}
+.btn-light{background:var(--tiffany-soft);color:var(--blue-dark);border:1px solid rgba(73,214,210,.45)}
+.btn-danger{background:#fee2e2;color:#991b1b}
+.btn-full{width:100%;margin-top:10px}
+.remove{height:50px;border:1px solid var(--line);border-radius:13px;background:#fff;font-size:24px}
+.quick-list{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.chip{border:1px solid rgba(73,214,210,.55);background:linear-gradient(180deg,#ffffff,var(--tiffany-soft));border-radius:999px;padding:9px 12px;font-weight:800;color:var(--blue-dark)}
+.summary{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.kpi{border:1px solid var(--line);border-radius:15px;padding:13px;background:linear-gradient(180deg,#ffffff,#f9fdff)}
+.kpi span{display:block;color:var(--muted);font-size:13px;font-weight:700}
+.kpi strong{display:block;font-size:21px;margin-top:4px;color:var(--blue-dark)}
+.kpi.profit{grid-column:1/-1;background:linear-gradient(135deg,var(--blue-light),var(--tiffany-soft));border:2px solid rgba(11,99,182,.18)}
+.preview{white-space:pre-wrap;background:linear-gradient(180deg,#ffffff,#f7fcff);border:1px solid var(--line);border-radius:14px;padding:14px;line-height:1.7;font-size:15px}
+.photos{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.photo{position:relative;aspect-ratio:1/1;border:1px solid var(--line);border-radius:13px;overflow:hidden;background:#f3f4f6}
+.photo img{width:100%;height:100%;object-fit:cover}
+.photo button{position:absolute;right:5px;top:5px;border:0;border-radius:50%;width:30px;height:30px;background:rgba(0,0,0,.65);color:#fff;font-size:18px}
+.month-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:10px}
+.stat{border:1px solid var(--line);border-radius:14px;padding:12px;background:linear-gradient(180deg,#ffffff,#f7fffe)}
+.stat span{display:block;color:var(--muted);font-size:12px;font-weight:700}
+.stat b{display:block;font-size:18px;margin-top:3px;color:var(--blue-dark)}
+.history-item{border:1px solid var(--line);border-radius:14px;padding:12px;margin-top:10px;background:linear-gradient(180deg,#ffffff,#fbffff)}
+.history-item b{display:block;margin-bottom:4px}
+.history-meta{font-size:13px;color:var(--muted)}
+.history-actions{display:flex;gap:8px;margin-top:10px}
+.history-actions button{flex:1}
+details{margin-top:10px}
+summary{font-weight:900;cursor:pointer;padding:8px 0}
+.setting-row{display:grid;grid-template-columns:1fr 1fr 44px;gap:8px;margin-top:8px}
+.actions{position:fixed;bottom:0;left:0;right:0;background:rgba(238,247,251,.97);border-top:1px solid var(--line);padding:10px 14px calc(10px + env(safe-area-inset-bottom));z-index:10;backdrop-filter:blur(8px)}
+.actions-inner{max-width:720px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:520px){.grid2,.grid3{grid-template-columns:1fr}.row{grid-template-columns:minmax(0,1fr) minmax(0,1fr) 44px}}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="header">
+    <div class="brand">
+      <img class="brand-logo" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%221200%22%20height%3D%22260%22%20viewBox%3D%220%200%201200%20260%22%3E%0A%20%20%3Crect%20width%3D%221200%22%20height%3D%22260%22%20rx%3D%2224%22%20fill%3D%22%23ffffff%22/%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22g1%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%230B63B6%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2349D6D2%22/%3E%0A%20%20%20%20%3C/linearGradient%3E%0A%20%20%3C/defs%3E%0A%0A%20%20%3C%21--%20English%20logo%20--%3E%0A%20%20%3Cg%20transform%3D%22translate%2834%2C45%29%22%3E%0A%20%20%20%20%3Ctext%20x%3D%220%22%20y%3D%2298%22%20font-family%3D%22Arial%2C%20Helvetica%2C%20sans-serif%22%20font-size%3D%22106%22%20font-weight%3D%22800%22%20fill%3D%22%23114a7a%22%20letter-spacing%3D%222%22%3ED%3C/text%3E%0A%20%20%20%20%3Ctext%20x%3D%2278%22%20y%3D%2298%22%20font-family%3D%22Arial%2C%20Helvetica%2C%20sans-serif%22%20font-size%3D%22106%22%20font-weight%3D%22800%22%20fill%3D%22%23114a7a%22%20letter-spacing%3D%222%22%3EA%3C/text%3E%0A%20%20%20%20%3Cpolygon%20points%3D%22121%2C26%20145%2C78%2097%2C78%22%20fill%3D%22url%28%23g1%29%22/%3E%0A%20%20%20%20%3Ctext%20x%3D%22156%22%20y%3D%2298%22%20font-family%3D%22Arial%2C%20Helvetica%2C%20sans-serif%22%20font-size%3D%22106%22%20font-weight%3D%22800%22%20fill%3D%22%23114a7a%22%20letter-spacing%3D%222%22%3EISIN%3C/text%3E%0A%20%20%20%20%3Ctext%20x%3D%22165%22%20y%3D%22142%22%20font-family%3D%22Arial%2C%20Helvetica%2C%20sans-serif%22%20font-size%3D%2234%22%20font-weight%3D%22700%22%20fill%3D%22%231ea7a4%22%20letter-spacing%3D%226%22%3EWATERPROOFING%3C/text%3E%0A%20%20%3C/g%3E%0A%0A%20%20%3C%21--%20Divider%20--%3E%0A%20%20%3Crect%20x%3D%22575%22%20y%3D%2240%22%20width%3D%225%22%20height%3D%22175%22%20rx%3D%222.5%22%20fill%3D%22%230B63B6%22/%3E%0A%0A%20%20%3C%21--%20Chinese%20logo%20--%3E%0A%20%20%3Cg%20transform%3D%22translate%28622%2C35%29%22%3E%0A%20%20%20%20%3Ctext%20x%3D%220%22%20y%3D%22120%22%20font-family%3D%22Arial%2C%20%27Noto%20Sans%20TC%27%2C%20%27Microsoft%20JhengHei%27%2C%20sans-serif%22%20font-size%3D%22110%22%20font-weight%3D%22900%22%20fill%3D%22%23114a7a%22%3E%E5%A4%A7%E4%BF%A1%3C/text%3E%0A%20%20%20%20%3Ctext%20x%3D%22250%22%20y%3D%22120%22%20font-family%3D%22Arial%2C%20%27Noto%20Sans%20TC%27%2C%20%27Microsoft%20JhengHei%27%2C%20sans-serif%22%20font-size%3D%22110%22%20font-weight%3D%22900%22%20fill%3D%22%231ea7a4%22%3E%E9%98%B2%E6%B0%B4%3C/text%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%22152%22%20width%3D%22470%22%20height%3D%2214%22%20rx%3D%227%22%20fill%3D%22url%28%23g1%29%22/%3E%0A%20%20%3C/g%3E%0A%3C/svg%3E" alt="大信防水 Logo">
+      <h1>成本控制計算</h1>
+      <p>大信防水｜工程成本・工資・獲利管理｜包工單價表 98項</p>
+    </div>
+  </div>
+
+  <section class="card">
+    <h2>工程資料</h2>
+    <div class="grid2">
+      <label>施工開始日期<input id="startDate" type="date"></label>
+      <label>施工完成日期<input id="endDate" type="date"></label>
+    </div>
+
+    <label>工地快速選單
+      <select id="siteSelect"><option value="">請選擇工地</option></select>
+    </label>
+<label>施工項目快速選單
+      <select id="projectSelect"><option value="">請選擇施工項目</option></select>
+    </label>
+<label>位置<input id="location" placeholder="例如：1F 店鋪／A棟屋頂"></label>
+
+    <div class="grid3">
+      <label>數量<input id="qty" type="number" inputmode="decimal" min="0" step="any" placeholder="0"></label>
+      <label>單位
+        <select id="unit">
+          <option value="m">米（m）</option>
+          <option value="㎡">平方公尺（㎡）</option>
+        </select>
+      </label>
+      <label>單價<input id="unitPrice" type="number" inputmode="decimal" min="0" step="any" placeholder="0"></label>
+    </div>
+    <div class="small">選擇施工項目後，若「單價表」已有設定，會自動帶入單價。</div>
+</section>
+
+  <section class="card">
+    <h2>員工工資</h2>
+    <div id="employeeQuick" class="quick-list"></div>
+    <div class="small">點員工姓名可快速加入；工資仍可手動修改。</div>
+    <div id="employeeList"></div>
+    <button type="button" class="btn btn-light btn-full" id="addEmployee">＋ 新增員工工資</button>
+  </section>
+<section class="card">
+    <h2>即時計算</h2>
+    <div class="summary">
+      <div class="kpi"><span>工程收入</span><strong id="income">$0</strong></div>
+      <div class="kpi"><span>員工工資</span><strong id="wages">$0</strong></div>
+      <div class="kpi"><span>獲利率</span><strong id="margin">0%</strong></div>
+      <div class="kpi profit"><span>實際獲利</span><strong id="profit">$0</strong></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>月統計</h2>
+    <label>統計月份<input id="statsMonth" type="month"></label>
+    <div class="month-stats">
+      <div class="stat"><span>回報筆數</span><b id="mCount">0</b></div>
+      <div class="stat"><span>工程收入</span><b id="mIncome">$0</b></div>
+      <div class="stat"><span>員工工資</span><b id="mWages">$0</b></div>
+      <div class="stat"><span>實際獲利</span><b id="mProfit">$0</b></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>LINE 回報預覽</h2>
+    <div id="preview" class="preview"></div>
+    <button class="btn btn-dark btn-full" id="copyReport">複製 LINE 回報文字</button>
+  </section>
+
+  <section class="card">
+    <h2>快速設定</h2>
+    <details>
+      <summary>工地名單設定</summary>
+      <div id="siteSettings"></div>
+      <button class="btn btn-light btn-full" id="addSiteSetting">＋ 新增工地</button>
+    </details>
+    <details>
+      <summary>施工項目／單價表設定</summary>
+      <div id="priceSettings"></div>
+      <button class="btn btn-light btn-full" id="addPriceSetting">＋ 新增項目單價</button>
+    </details>
+    <details>
+      <summary>員工名單設定</summary><div class="small">可設定員工姓名與預設工資；點員工時會自動帶入。</div>
+      <div id="employeeSettings"></div>
+      <button class="btn btn-light btn-full" id="addEmployeeSetting">＋ 新增員工</button>
+    </details>
+    <button class="btn btn-dark btn-full" id="saveSettings">儲存設定</button>
+    <div class="small">工地、單價、員工姓名與預設工資只需設定一次，之後此手機會記住。</div>
+  </section>
+
+  <section class="card">
+    <h2>歷史查詢與匯出</h2>
+    <label>搜尋<input id="historySearch" placeholder="工地／施工項目"></label>
+    <button class="btn btn-dark btn-full" id="exportCsv">匯出 CSV</button>
+    <div class="small">可用 Excel 開啟，方便做月報與對帳。</div>
+  </section>
+
+  <section class="card">
+    <h2>歷史紀錄</h2>
+    <div id="history"></div>
+  </section>
+</div>
+
+<div class="actions">
+  <div class="actions-inner">
+    <button class="btn btn-light" id="clearAll">清空本頁</button>
+    <button class="btn btn-dark" id="saveReport">儲存回報</button>
+  </div>
+</div>
+
+<script>
+var $=function(id){return document.getElementById(id)};
+var money=function(v){return new Intl.NumberFormat('zh-TW',{style:'currency',currency:'TWD',maximumFractionDigits:0}).format(Number(v)||0)};
+var num=function(v){return Math.max(0,Number(v)||0)};
+
+var defaultSettings={
+  sites:['中麗建設No.14','上順艾麗','上順麗','億東柏德客運段','禾林青埔RichOne3','璟都航空城'],
+  prices:[
+    {name:"窗框RC堆土下八字貼網－補工1工",price:2000},
+    {name:"窗框崁縫單液PU填縫含整飾－一底二度",price:62},
+    {name:"窗框結構防水－一底二度／含窗角單液",price:37},
+    {name:"窗框結構防水－一底三度／含窗角單液",price:47},
+    {name:"窗框結構防水－一底二度＋粉刷後一底一度",price:52},
+    {name:"窗框結構防水－一底二度＋粉刷後一底二度",price:57},
+    {name:"窗框四面貼網",price:70},
+    {name:"格雷盾 含PS-1K窗框",price:120},
+    {name:"層縫防水－一底二度",price:35},
+    {name:"層縫防水－一底三度",price:45},
+    {name:"層縫防水－一底二度＋單液PU填縫＋防水砂漿整平",price:65},
+    {name:"層縫貼網",price:65},
+    {name:"格雷盾 含PS-1K層縫",price:120},
+    {name:"外牆結構防水－RC全面",price:45},
+    {name:"外牆結構防水－RC局部",price:50},
+    {name:"外牆粉刷後防水－一底一度",price:15},
+    {name:"外牆粉刷後防水－一底二度",price:20},
+    {name:"外牆防水含雨遮",price:50},
+    {name:"陽台防水－試水抽水／結構試水／適當補工",price:60},
+    {name:"陽台防水＋地坪貼網－再貼網一次",price:80},
+    {name:"陽台防水－牆面二塗＋地坪三塗",price:70},
+    {name:"陽台瓦斯管單液PU封數－一底二塗",price:150},
+    {name:"管道間防水RC－不試水",price:150},
+    {name:"管道間防水白磚紅磚－不試水",price:200},
+    {name:"花台護板",price:37},
+    {name:"花台防水",price:60},
+    {name:"彎頂防水",price:60},
+    {name:"天溝防水",price:80},
+    {name:"線板周邊防水－防水＋面漆",price:50},
+    {name:"景觀水池－彈性複合材",price:60},
+    {name:"游泳池／三溫暖／溫泉池",price:110},
+    {name:"地下室水箱",price:150},
+    {name:"屋頂水箱",price:200},
+    {name:"水箱接縫",price:65},
+    {name:"輕隔間角隅－含砂漿滾圓角",price:20},
+    {name:"輕隔間角隅－不含砂漿滾圓角",price:10},
+    {name:"室內地坪－素地無須研磨",price:30},
+    {name:"浴廁牆面陰角隅貼網－牆面陰角立面",price:20},
+    {name:"浴廁紅磚打底前抹縫、含粉刷後角隅整飾",price:100},
+    {name:"浴廁紅磚粉刷後施作",price:55},
+    {name:"浴廁、廚房輕隔間白磚－含單液PU",price:80},
+    {name:"浴廁地坪防水格雷盾（含角隅單液PU）＋灑沙",price:120},
+    {name:"浴廁地坪防水",price:20},
+    {name:"浴廁地坪砂漿保護",price:20},
+    {name:"浴廁地坪防水－地坪三塗、全面貼網",price:30},
+    {name:"門檻白鐵止水角鋼－工地固定",price:50},
+    {name:"淋浴白鐵止水角鋼－工地固定",price:50},
+    {name:"門框石材門檻－膠帶保護含整飾加一底二塗",price:200},
+    {name:"淋浴石材門檻－膠帶保護含整飾加一底二塗",price:200},
+    {name:"止水墩角隅",price:20},
+    {name:"地下室外牆防水",price:50},
+    {name:"複壁截水溝",price:60},
+    {name:"地下室樓層接縫－填塞封數含再灌PF-1K、MAX-2K灌注",price:100},
+    {name:"地下室壓樑接縫－填塞封數含再灌PF-1K、MAX-2K灌注",price:100},
+    {name:"地下室牆面滲透結晶－一底二度",price:40},
+    {name:"地下室解壓井止漏含再漏",price:12000},
+    {name:"地下室止水條安裝",price:25},
+    {name:"地下室止水帶夾掛",price:65},
+    {name:"地下室裂縫止漏PF-1K、MAX-2K",price:200},
+    {name:"地下室台電引進管止漏含在漏",price:800},
+    {name:"地下室導溝外牆引進管止漏含在漏",price:200},
+    {name:"筏基－單面模連續壁牆面、升降機坑地下室－止漏",price:120},
+    {name:"筏基防水－不含止漏，含清洗地坪牆面、含接縫打鑿",price:75},
+    {name:"升降機坑－不含止漏，含清洗地坪牆面、含接縫打鑿",price:75},
+    {name:"電梯機坑",price:8000},
+    {name:"焦油PU3mm－一底一度",price:45},
+    {name:"焦油PU3mm－一底二度",price:50},
+    {name:"素地整理",price:20},
+    {name:"抓角",price:20},
+    {name:"SP-5000單液型－一底一度",price:40},
+    {name:"SP-5000雙液型－一底一度",price:45},
+    {name:"格雷盾手塗－一底一度",price:45},
+    {name:"格雷盾手塗－二底一度",price:65},
+    {name:"輕石板鋪貼－含PU及單液PU填縫",price:30},
+    {name:"PS板鋪貼－固定式安裝、適當補工",price:20},
+    {name:"格雷盾 地坪牆面研磨",price:30},
+    {name:"格雷盾 高壓清洗含積水清除",price:50},
+    {name:"格雷盾 PS-1K防水泥膏補強",price:60},
+    {name:"格雷盾 底塗",price:20},
+    {name:"格雷盾 中塗",price:20},
+    {name:"格雷盾 撒沙",price:20},
+    {name:"PIT壓樑纜安裝",price:50},
+    {name:"PIT FS版／BS版安裝",price:80},
+    {name:"PIT壓樑纜PF-1K灌注－含再漏止漏",price:150},
+    {name:"PIT FS版／BS版 PF-1K灌注－含再漏止漏",price:220},
+    {name:"PIT管壓樑纜安裝＋灌注＋再漏灌注",price:200},
+    {name:"PIT管FS版／BS版安裝＋灌注＋再漏灌注",price:300},
+    {name:"傳統止水條／FS版／BS版",price:50},
+    {name:"傳統止水條／FS版／BS版－另一規格",price:30},
+    {name:"傳統止水條＋止漏／FS版／BS版",price:270},
+    {name:"傳統止水條＋止漏／壓樑",price:180},
+    {name:"止水條＋打膠／FS版／BS版",price:90},
+    {name:"止水條＋打膠／壓樑",price:60},
+    {name:"止水條＋打膠＋止漏／FS版／BS版",price:310},
+    {name:"止水條＋打膠＋止漏／壓樑",price:210},
+    {name:"浴缸粉刷後防水",price:200},
+    {name:"中間槽止漏填平",price:1200},
+    {name:"中間槽止漏豆腐座",price:1400}
+  ],
+  employees:[]
+};
+var settings=loadSettings();
+
+function loadSettings(){
+  try{
+    var s=JSON.parse(localStorage.getItem('dashin_settings')||'null');
+    if(!s) return JSON.parse(JSON.stringify(defaultSettings));
+    if(!Array.isArray(s.sites)) s.sites=[];
+    if(!Array.isArray(s.prices)) s.prices=[];
+    if(!Array.isArray(s.employees)) s.employees=[];
+    s.employees=s.employees.map(function(x){
+      if(typeof x==='string') return {name:x,wage:0};
+      return {name:(x&&x.name)||'',wage:num((x&&x.wage)||0)};
+    }).filter(function(x){return x.name});
+    var existing={};
+    s.prices.forEach(function(x){ if(x&&x.name) existing[x.name]=true; });
+    defaultSettings.prices.forEach(function(x){
+      if(!existing[x.name]) s.prices.push({name:x.name,price:x.price});
+    });
+    return s;
+  }catch(e){return JSON.parse(JSON.stringify(defaultSettings))}
+}
+function saveSettingsData(){localStorage.setItem('dashin_settings',JSON.stringify(settings))}
+
+function refreshQuickLists(){
+  var ss=$('siteSelect'); ss.innerHTML='<option value="">請選擇工地</option>';
+  settings.sites.forEach(function(x){var o=document.createElement('option');o.value=x;o.textContent=x;ss.appendChild(o)});
+
+  var ps=$('projectSelect'); ps.innerHTML='<option value="">請選擇施工項目</option>';
+  settings.prices.forEach(function(x){var o=document.createElement('option');o.value=x.name;o.textContent=x.name;ps.appendChild(o)});
+
+  var eq=$('employeeQuick'); eq.innerHTML='';
+  if(!settings.employees.length){eq.innerHTML='<span class="small">尚未設定員工名單</span>'}
+  settings.employees.forEach(function(emp){
+    var b=document.createElement('button');b.type='button';b.className='chip';
+    b.textContent=emp.name+(num(emp.wage)>0?' $'+num(emp.wage):'');
+    b.onclick=function(){createEmployee(emp.name,num(emp.wage)>0?num(emp.wage):'')};
+    eq.appendChild(b);
+  });
+}
+
+function createEmployee(name,wage){
+  name=name||''; wage=(wage===undefined||wage===null)?'':wage;
+  var row=document.createElement('div');row.className='row';
+  var n=document.createElement('input');n.className='emp-name';n.type='text';n.placeholder='員工姓名';n.value=name;
+  var w=document.createElement('input');w.className='emp-wage';w.type='text';w.inputMode='numeric';w.pattern='[0-9]*';w.placeholder='本次工資';w.value=wage;
+  var d=document.createElement('button');d.type='button';d.className='remove';d.textContent='×';
+  n.oninput=calc;w.oninput=calc;d.onclick=function(){row.remove();calc()};
+  row.appendChild(n);row.appendChild(w);row.appendChild(d);$('employeeList').appendChild(row);calc();
+}
+function getEmployees(){
+  return Array.prototype.slice.call(document.querySelectorAll('#employeeList .row')).map(function(r){
+    return {name:r.querySelector('.emp-name').value.trim(),wage:num(r.querySelector('.emp-wage').value)}
+  }).filter(function(x){return x.name||x.wage});
+}
+function getData(){
+  return {
+    id:Date.now(),startDate:$('startDate').value,endDate:$('endDate').value,
+    site:$('siteSelect').value,project:$('projectSelect').value,location:$('location').value.trim(),
+    qty:num($('qty').value),unit:$('unit').value,unitPrice:num($('unitPrice').value),
+    note:'',employees:getEmployees()
+  };
+}
+function totals(d){
+  d=d||getData();var income=d.qty*d.unitPrice;
+  var wages=(d.employees||[]).reduce(function(s,x){return s+num(x.wage)},0);
+  var profit=income-wages;var margin=income>0?(profit/income*100):0;return {income:income,wages:wages,profit:profit,margin:margin};
+}
+function buildReport(d){
+  d=d||getData();var t=totals(d);
+  var e=(d.employees||[]).length?(d.employees||[]).map(function(x,i){
+    return (i+1)+'. '+(x.name||'未命名')+'｜'+money(x.wage);
+  }).join('\n'):'無';
+  return '【成本控制回報】\n'+
+    '━━━━━━━━━━\n'+
+    '【工程資料】\n'+
+    '施工日期｜'+(d.startDate||'—')+' ～ '+(d.endDate||'—')+'\n'+
+    '工地名稱｜'+(d.site||'—')+'\n'+
+    '施工項目｜'+(d.project||'—')+'\n'+
+    '施工位置｜'+(d.location||'—')+'\n\n'+
+    '【數量與收入】\n'+
+    '施工數量｜'+d.qty+' '+(d.unit||'')+'\n'+
+    '施工單價｜'+money(d.unitPrice)+'\n'+
+    '工程收入｜'+money(t.income)+'\n\n'+
+    '【員工工資】\n'+e+'\n'+
+    '人工成本｜'+money(t.wages)+'\n\n'+
+    '【損益結果】\n'+
+    '實際獲利｜'+money(t.profit)+'\n'+
+    '獲利率｜'+t.margin.toFixed(1)+'%\n'+
+    '━━━━━━━━━━';
+}
+function calc(){
+  var t=totals();$('income').textContent=money(t.income);$('wages').textContent=money(t.wages);$('profit').textContent=money(t.profit);
+  $('margin').textContent=t.margin.toFixed(1)+'%';$('profit').style.color=t.profit<0?'#b91c1c':'#166534';$('preview').textContent=buildReport();
+}
+
+$('siteSelect').onchange=function(){calc()};
+$('projectSelect').onchange=function(){
+  if(this.value){
+    var p=settings.prices.find(function(x){return x.name===$('projectSelect').value});
+    if(p && num(p.price)>0)$('unitPrice').value=p.price;
+  }
+  calc();
+};
+['startDate','endDate','location','qty','unit','unitPrice'].forEach(function(id){$(id).oninput=calc});
+$('addEmployee').onclick=function(){createEmployee('','')};
+
+
+function getHistory(){try{return JSON.parse(localStorage.getItem('dashin_reports')||'[]')}catch(e){return []}}
+function saveHistory(arr){localStorage.setItem('dashin_reports',JSON.stringify(arr))}
+function loadHistory(){
+  var arr=getHistory(),box=$('history');box.innerHTML='';
+  var q=($('historySearch')?$('historySearch').value.trim().toLowerCase():'');
+  arr=arr.filter(function(d){var text=((d.site||'')+' '+(d.project||'')).toLowerCase();return !q||text.indexOf(q)>=0;});
+  if(!arr.length){box.innerHTML='<div class="small">目前尚無儲存紀錄。</div>';refreshMonthStats();return}
+  arr.forEach(function(d){
+    var t=totals(d),div=document.createElement('div');div.className='history-item';
+    div.innerHTML='<b>'+(d.site||'未命名工地')+'｜'+(d.project||'未填項目')+'</b>'+
+      '<div class="history-meta">'+(d.startDate||'—')+' ～ '+(d.endDate||'—')+'｜獲利 '+money(t.profit)+'</div>'+
+      '<div class="history-actions"><button class="btn btn-light load">載入</button><button class="btn btn-danger del">刪除</button></div>';
+    div.querySelector('.load').onclick=function(){loadReport(d)};
+    div.querySelector('.del').onclick=function(){if(confirm('確定刪除此筆紀錄？')){saveHistory(arr.filter(function(x){return x.id!==d.id}));loadHistory()}};
+    box.appendChild(div);
+  });
+  refreshMonthStats();
+}
+function loadReport(d){
+  ['startDate','endDate','location','qty','unit','unitPrice'].forEach(function(id){$(id).value=(d[id]===undefined||d[id]===null)?'':d[id]});
+  $('employeeList').innerHTML='';(d.employees||[]).forEach(function(x){createEmployee(x.name,x.wage)});
+  if(!(d.employees||[]).length)createEmployee('','');
+  calc();window.scrollTo({top:0,behavior:'smooth'});
+}
+$('saveReport').onclick=function(){
+  var d=getData(),arr=getHistory();
+  try{arr.unshift(d);saveHistory(arr.slice(0,100));loadHistory();alert('工程回報已儲存。')}
+  catch(e){alert('儲存失敗：照片可能太多。請刪除部分照片後再試。')}
+};
+$('clearAll').onclick=function(){
+  if(!confirm('確定清空目前輸入內容？'))return;
+  ['startDate','endDate','location','qty','unitPrice'].forEach(function(id){$(id).value=''});
+  $('siteSelect').value='';$('projectSelect').value='';$('employeeList').innerHTML='';createEmployee('','');calc();
+};
+$('copyReport').onclick=function(){
+  var text=buildReport();
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){alert('已複製，可直接貼到 LINE。')})}
+  else{prompt('請長按複製以下內容：',text)}
+};
+
+function refreshMonthStats(){
+  var m=$('statsMonth').value;
+  var arr=getHistory().filter(function(d){return m && (d.startDate||'').slice(0,7)===m});
+  var ti={income:0,wages:0,profit:0};
+  arr.forEach(function(d){var t=totals(d);ti.income+=t.income;ti.wages+=t.wages;ti.profit+=t.profit});
+  $('mCount').textContent=arr.length;$('mIncome').textContent=money(ti.income);$('mWages').textContent=money(ti.wages);$('mProfit').textContent=money(ti.profit);
+  $('mProfit').style.color=ti.profit<0?'#b91c1c':'#166534';
+}
+$('statsMonth').onchange=refreshMonthStats;
+
+function addSettingRow(container,a,b,type){
+  var row=document.createElement('div');row.className='setting-row';
+  var i1=document.createElement('input');i1.value=a||'';i1.placeholder=type==='price'?'施工項目':'名稱';
+  var i2=document.createElement('input');i2.value=b||'';i2.placeholder=type==='price'?'單價':'可留空';i2.style.display=type==='price'?'block':'none';
+  var del=document.createElement('button');del.type='button';del.className='remove';del.textContent='×';del.onclick=function(){row.remove()};
+  row.appendChild(i1);row.appendChild(i2);row.appendChild(del);container.appendChild(row);
+}
+function renderSettings(){
+  $('siteSettings').innerHTML='';settings.sites.forEach(function(x){addSettingRow($('siteSettings'),x,'','name')});
+  $('priceSettings').innerHTML='';settings.prices.forEach(function(x){addSettingRow($('priceSettings'),x.name,x.price,'price')});
+  $('employeeSettings').innerHTML='';settings.employees.forEach(function(x){
+    var row=document.createElement('div');row.className='setting-row';
+    var i1=document.createElement('input');i1.value=x.name||'';i1.placeholder='員工姓名';
+    var i2=document.createElement('input');i2.value=num(x.wage)||'';i2.type='number';i2.inputMode='numeric';i2.placeholder='預設工資';
+    var del=document.createElement('button');del.type='button';del.className='remove';del.textContent='×';del.onclick=function(){row.remove()};
+    row.appendChild(i1);row.appendChild(i2);row.appendChild(del);$('employeeSettings').appendChild(row);
+  });
+}
+$('addSiteSetting').onclick=function(){addSettingRow($('siteSettings'),'','','name')};
+$('addPriceSetting').onclick=function(){addSettingRow($('priceSettings'),'','','price')};
+$('addEmployeeSetting').onclick=function(){
+  var row=document.createElement('div');row.className='setting-row';
+  var i1=document.createElement('input');i1.placeholder='員工姓名';
+  var i2=document.createElement('input');i2.type='number';i2.inputMode='numeric';i2.placeholder='預設工資';
+  var del=document.createElement('button');del.type='button';del.className='remove';del.textContent='×';del.onclick=function(){row.remove()};
+  row.appendChild(i1);row.appendChild(i2);row.appendChild(del);$('employeeSettings').appendChild(row);
+};
+$('saveSettings').onclick=function(){
+  settings.sites=Array.prototype.slice.call($('siteSettings').querySelectorAll('.setting-row')).map(function(r){return r.children[0].value.trim()}).filter(Boolean);
+  settings.prices=Array.prototype.slice.call($('priceSettings').querySelectorAll('.setting-row')).map(function(r){return {name:r.children[0].value.trim(),price:num(r.children[1].value)}}).filter(function(x){return x.name});
+  settings.employees=Array.prototype.slice.call($('employeeSettings').querySelectorAll('.setting-row')).map(function(r){
+    return {name:r.children[0].value.trim(),wage:num(r.children[1].value)};
+  }).filter(function(x){return x.name});
+  saveSettingsData();refreshQuickLists();alert('設定已儲存。');
+};
+
+
+$('historySearch').oninput=loadHistory;
+
+function csvSafe(v){
+  v=(v===undefined||v===null)?'':String(v);
+  return '"'+v.replace(/"/g,'""')+'"';
+}
+$('exportCsv').onclick=function(){
+  var arr=getHistory();
+  if(!arr.length){alert('目前沒有可匯出的歷史紀錄。');return}
+  var rows=[['日期','工地','施工項目','位置','數量','單位','單價','工程收入','員工工資','實際獲利','獲利率']];
+  arr.forEach(function(d){
+    var t=totals(d);
+    rows.push([d.startDate||'',d.site||'',d.project||'',d.location||'',d.qty||0,d.unit||'',d.unitPrice||0,t.income,t.wages,t.profit,t.margin.toFixed(1)+'%']);
+  });
+  var csv='\uFEFF'+rows.map(function(r){return r.map(csvSafe).join(',')}).join('\r\n');
+  var blob=new Blob([csv],{type:'text/csv;charset=utf-8;'});
+  var url=URL.createObjectURL(blob);
+  var a=document.createElement('a');a.href=url;a.download='大信防水成本控制_'+new Date().toISOString().slice(0,10)+'.csv';
+  document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(url)},1000);
+};
+
+(function init(){
+  refreshQuickLists();renderSettings();createEmployee('','');
+  var now=new Date(),ym=now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0');$('statsMonth').value=ym;
+  calc();loadHistory();
+})();
+</script>
+</body>
+</html>
