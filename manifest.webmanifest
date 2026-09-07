@@ -1,0 +1,26 @@
+{
+  "id": "./",
+  "name": "大信防水成本控制",
+  "short_name": "成本控制",
+  "description": "大信防水工程成本、員工工資與獲利管理",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#EDF8FB",
+  "theme_color": "#0B63B6",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
