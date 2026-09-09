@@ -60,14 +60,14 @@ summary{font-weight:900;cursor:pointer;padding:8px 0}
 @media(max-width:520px){.grid2,.grid3{grid-template-columns:1fr}.row{grid-template-columns:minmax(0,1fr) minmax(0,1fr) 44px}}
 </style>
 
-<link rel="manifest" href="./manifest.webmanifest">
+<link rel="manifest" href="./manifest-v20.webmanifest?v=20">
 <meta name="theme-color" content="#0B63B6">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="大信防水成本控制">
-<link rel="icon" href="./icon-192.png" sizes="192x192">
-<link rel="apple-touch-icon" href="./icon-192.png">
+<link rel="icon" href="./icon-v20-192.png?v=20" sizes="192x192">
+<link rel="apple-touch-icon" href="./icon-v20-180.png?v=20">
 <style>
 #netStatus{
   position:fixed;top:10px;right:10px;z-index:60;
@@ -77,12 +77,14 @@ summary{font-weight:900;cursor:pointer;padding:8px 0}
 #netStatus.online{background:#dff8f7;color:#0f766e}
 #netStatus.offline{background:#fff3cd;color:#8a5a00}
 #installAppBtn{
-  display:none;position:fixed;right:14px;bottom:82px;z-index:55;
+  display:block;position:fixed;right:14px;bottom:82px;z-index:55;
   border:0;border-radius:999px;padding:12px 16px;font-weight:900;color:white;
   background:linear-gradient(135deg,#0B63B6,#49D6D2);
   box-shadow:0 8px 22px rgba(11,99,182,.26)
 }
 #installAppBtn.show{display:block}
+#installAppBtn{min-width:112px}
+@media(display-mode:standalone){#installAppBtn{display:none!important}}
 .offline-tools{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
 @media(max-width:520px){.offline-tools{grid-template-columns:1fr}}
 .offline-note{
@@ -578,27 +580,68 @@ $('exportCsv').onclick=function(){
   window.addEventListener('offline',updateNetStatus);
   updateNetStatus();
 
+  
   var deferredPrompt=null;
   var installBtn=document.getElementById('installAppBtn');
+
+  function isStandalone(){
+    return window.matchMedia('(display-mode: standalone)').matches ||
+           window.navigator.standalone === true;
+  }
+
+  function isIOS(){
+    return /iphone|ipad|ipod/i.test(navigator.userAgent);
+  }
+
+  if(installBtn && isStandalone()){
+    installBtn.style.display='none';
+  }
+
   window.addEventListener('beforeinstallprompt',function(e){
     e.preventDefault();
     deferredPrompt=e;
-    installBtn.classList.add('show');
+    if(installBtn){
+      installBtn.style.display='block';
+      installBtn.textContent='安裝 App';
+    }
   });
-  installBtn.addEventListener('click',async function(){
-    if(!deferredPrompt)return;
-    deferredPrompt.prompt();
-    await deferredPrompt.userChoice;
-    deferredPrompt=null;
-    installBtn.classList.remove('show');
-  });
+
+  if(installBtn){
+    installBtn.addEventListener('click',async function(){
+      if(isStandalone()){
+        alert('目前已經是 App 模式。');
+        return;
+      }
+
+      if(deferredPrompt){
+        deferredPrompt.prompt();
+        await deferredPrompt.userChoice;
+        deferredPrompt=null;
+        return;
+      }
+
+      if(isIOS()){
+        alert('iPhone 安裝方式：
+1. 請使用 Safari 開啟
+2. 點下方「分享」
+3. 選擇「加入主畫面」
+4. 點「加入」完成安裝');
+      }else{
+        alert('Android 安裝方式：
+1. 建議使用 Chrome 開啟
+2. 點右上角「⋮」
+3. 選擇「安裝應用程式」或「加到主畫面」');
+      }
+    });
+  }
+
   window.addEventListener('appinstalled',function(){
-    installBtn.classList.remove('show');
+    if(installBtn) installBtn.style.display='none';
   });
 
   if('serviceWorker' in navigator){
     window.addEventListener('load',function(){
-      navigator.serviceWorker.register('./service-worker.js').then(function(reg){
+      navigator.serviceWorker.register('./service-worker-v20.js?v=20', {updateViaCache:'none'}).then(function(reg){
         if(reg.waiting) reg.waiting.postMessage({type:'SKIP_WAITING'});
       }).catch(function(err){ console.log(err); });
     });
