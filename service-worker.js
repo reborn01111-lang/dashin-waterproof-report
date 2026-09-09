@@ -1,37 +1,57 @@
-const CACHE='dashin-cost-control-pwa-v17';
-const CORE=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png'];
+const VERSION='dashin-offline-v18-formal-1';
+const APP_SHELL=[
+  './',
+  './index.html',
+  './manifest.webmanifest',
+  './icon-192.png',
+  './icon-512.png'
+];
 
 self.addEventListener('install',event=>{
-  event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE)));
+  event.waitUntil(
+    caches.open(VERSION).then(cache=>cache.addAll(APP_SHELL))
+  );
   self.skipWaiting();
 });
 
 self.addEventListener('activate',event=>{
   event.waitUntil(
-    caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k))))
+    caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==VERSION).map(k=>caches.delete(k))))
   );
   self.clients.claim();
 });
 
+self.addEventListener('message',event=>{
+  if(event.data && event.data.type==='SKIP_WAITING') self.skipWaiting();
+});
+
 self.addEventListener('fetch',event=>{
-  if(event.request.method!=='GET') return;
-  if(event.request.mode==='navigate'){
+  const req=event.request;
+  if(req.method!=='GET') return;
+
+  // HTML navigation: network first, cache fallback
+  if(req.mode==='navigate'){
     event.respondWith(
-      fetch(event.request)
-        .then(res=>{
-          const copy=res.clone();
-          caches.open(CACHE).then(cache=>cache.put('./index.html',copy));
-          return res;
-        })
-        .catch(()=>caches.match('./index.html'))
+      fetch(req).then(res=>{
+        const copy=res.clone();
+        caches.open(VERSION).then(cache=>cache.put('./index.html',copy));
+        return res;
+      }).catch(()=>caches.match('./index.html'))
     );
     return;
   }
+
+  // Static assets: cache first
   event.respondWith(
-    caches.match(event.request).then(cached=>cached || fetch(event.request).then(res=>{
-      const copy=res.clone();
-      caches.open(CACHE).then(cache=>cache.put(event.request,copy));
-      return res;
-    }))
+    caches.match(req).then(cached=>{
+      if(cached) return cached;
+      return fetch(req).then(res=>{
+        if(res && res.status===200){
+          const copy=res.clone();
+          caches.open(VERSION).then(cache=>cache.put(req,copy));
+        }
+        return res;
+      });
+    })
   );
 });

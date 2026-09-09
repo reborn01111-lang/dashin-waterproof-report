@@ -2,7 +2,7 @@
   "id": "./",
   "name": "大信防水成本控制",
   "short_name": "成本控制",
-  "description": "大信防水工程成本、員工工資與獲利管理",
+  "description": "大信防水工程成本、工資、獲利與離線工地管理",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
