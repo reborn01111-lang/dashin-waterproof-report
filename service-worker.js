@@ -1,4 +1,4 @@
-const VERSION='dashin-offline-v18-formal-1';
+const VERSION='dashin-offline-v19-company-icon-1';
 const APP_SHELL=[
   './',
   './index.html',
