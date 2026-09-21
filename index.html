@@ -82,6 +82,15 @@ summary{font-weight:900;cursor:pointer;padding:8px 0}
 .site-summary-table td:last-child{border-right:1px solid var(--line);border-radius:0 10px 10px 0;text-align:right}
 @media(max-width:520px){.analytics-filters{grid-template-columns:1fr}}
 
+
+.extra-project{border:1px solid var(--line);border-radius:16px;padding:12px;margin-top:10px;background:linear-gradient(180deg,#fff,#f8fdff)}
+.extra-project-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px}
+.extra-project-title{font-weight:900;color:var(--blue-dark)}
+.extra-project-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.extra-project-grid label{margin:0}
+.extra-project-subtotal{text-align:right;margin-top:8px;font-weight:900;color:var(--blue-dark)}
+@media(max-width:520px){.extra-project-grid{grid-template-columns:1fr 1fr}.extra-project-grid .extra-price-wrap{grid-column:1/-1}}
+
 </style>
 
 <link rel="manifest" href="/manifest.webmanifest">
@@ -108,7 +117,7 @@ box-shadow:0 8px 24px rgba(11,99,182,.28)}
     <div class="brand">
       <img class="brand-logo" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%221200%22%20height%3D%22260%22%20viewBox%3D%220%200%201200%20260%22%3E%0A%20%20%3Crect%20width%3D%221200%22%20height%3D%22260%22%20rx%3D%2224%22%20fill%3D%22%23ffffff%22/%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22g1%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%230B63B6%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2349D6D2%22/%3E%0A%20%20%20%20%3C/linearGradient%3E%0A%20%20%3C/defs%3E%0A%0A%20%20%3C%21--%20English%20logo%20--%3E%0A%20%20%3Cg%20transform%3D%22translate%2834%2C45%29%22%3E%0A%20%20%20%20%3Ctext%20x%3D%220%22%20y%3D%2298%22%20font-family%3D%22Arial%2C%20Helvetica%2C%20sans-serif%22%20font-size%3D%22106%22%20font-weight%3D%22800%22%20fill%3D%22%23114a7a%22%20letter-spacing%3D%222%22%3ED%3C/text%3E%0A%20%20%20%20%3Ctext%20x%3D%2278%22%20y%3D%2298%22%20font-family%3D%22Arial%2C%20Helvetica%2C%20sans-serif%22%20font-size%3D%22106%22%20font-weight%3D%22800%22%20fill%3D%22%23114a7a%22%20letter-spacing%3D%222%22%3EA%3C/text%3E%0A%20%20%20%20%3Cpolygon%20points%3D%22121%2C26%20145%2C78%2097%2C78%22%20fill%3D%22url%28%23g1%29%22/%3E%0A%20%20%20%20%3Ctext%20x%3D%22156%22%20y%3D%2298%22%20font-family%3D%22Arial%2C%20Helvetica%2C%20sans-serif%22%20font-size%3D%22106%22%20font-weight%3D%22800%22%20fill%3D%22%23114a7a%22%20letter-spacing%3D%222%22%3EISIN%3C/text%3E%0A%20%20%20%20%3Ctext%20x%3D%22165%22%20y%3D%22142%22%20font-family%3D%22Arial%2C%20Helvetica%2C%20sans-serif%22%20font-size%3D%2234%22%20font-weight%3D%22700%22%20fill%3D%22%231ea7a4%22%20letter-spacing%3D%226%22%3EWATERPROOFING%3C/text%3E%0A%20%20%3C/g%3E%0A%0A%20%20%3C%21--%20Divider%20--%3E%0A%20%20%3Crect%20x%3D%22575%22%20y%3D%2240%22%20width%3D%225%22%20height%3D%22175%22%20rx%3D%222.5%22%20fill%3D%22%230B63B6%22/%3E%0A%0A%20%20%3C%21--%20Chinese%20logo%20--%3E%0A%20%20%3Cg%20transform%3D%22translate%28622%2C35%29%22%3E%0A%20%20%20%20%3Ctext%20x%3D%220%22%20y%3D%22120%22%20font-family%3D%22Arial%2C%20%27Noto%20Sans%20TC%27%2C%20%27Microsoft%20JhengHei%27%2C%20sans-serif%22%20font-size%3D%22110%22%20font-weight%3D%22900%22%20fill%3D%22%23114a7a%22%3E%E5%A4%A7%E4%BF%A1%3C/text%3E%0A%20%20%20%20%3Ctext%20x%3D%22250%22%20y%3D%22120%22%20font-family%3D%22Arial%2C%20%27Noto%20Sans%20TC%27%2C%20%27Microsoft%20JhengHei%27%2C%20sans-serif%22%20font-size%3D%22110%22%20font-weight%3D%22900%22%20fill%3D%22%231ea7a4%22%3E%E9%98%B2%E6%B0%B4%3C/text%3E%0A%20%20%20%20%3Crect%20x%3D%224%22%20y%3D%22152%22%20width%3D%22470%22%20height%3D%2214%22%20rx%3D%227%22%20fill%3D%22url%28%23g1%29%22/%3E%0A%20%20%3C/g%3E%0A%3C/svg%3E" alt="大信防水 Logo">
       <h1>成本控制計算</h1>
-      <p>大信防水｜工程成本・工資・獲利管理｜包工單價表 98項｜工地分析版</p>
+      <p>大信防水｜工程成本・工資・獲利管理｜包工單價表 98項｜工地分析版｜多項加總</p>
     </div>
   </div>
 
@@ -141,6 +150,10 @@ box-shadow:0 8px 24px rgba(11,99,182,.28)}
       <label>單價<input id="unitPrice" type="number" inputmode="decimal" min="0" step="any" placeholder="0"></label>
     </div>
     <div class="small">選擇施工項目後，會依98項包工單價表自動帶入單價與原表單位。</div>
+
+    <div id="extraProjects"></div>
+    <button type="button" class="btn btn-light btn-full" id="addProject">＋ 新增施工項目（複選加總）</button>
+    <div class="small">需要同一工地計算多個施工項目時，可繼續新增；每項會各自計算後自動加總。</div>
 </section>
 
   <section class="card">
@@ -416,6 +429,9 @@ function refreshQuickLists(){
     b.onclick=function(){createEmployee(emp.name,num(emp.wage)>0?num(emp.wage):'')};
     eq.appendChild(b);
   });
+  Array.prototype.slice.call(document.querySelectorAll('.extra-project-select')).forEach(function(sel){
+    var old=sel.value;sel.innerHTML=projectPriceOptions(old);sel.value=old;
+  });
 }
 
 function createEmployee(name,wage){
@@ -432,35 +448,134 @@ function getEmployees(){
     return {name:r.querySelector('.emp-name').value.trim(),wage:num(r.querySelector('.emp-wage').value)}
   }).filter(function(x){return x.name||x.wage});
 }
+
+function projectUnitOptions(selected){
+  var units=[['m','米（m）'],['㎡','平方公尺（㎡）'],['座','座'],['座(支)','座(支)'],['工','工']];
+  return units.map(function(x){return '<option value="'+x[0]+'"'+(x[0]===selected?' selected':'')+'>'+x[1]+'</option>'}).join('');
+}
+function projectPriceOptions(selected){
+  var h='<option value="">請選擇施工項目</option>';
+  settings.prices.forEach(function(p){
+    h+='<option value="'+escapeHtml(p.name)+'"'+(p.name===selected?' selected':'')+'>'+escapeHtml(p.name)+'</option>';
+  });
+  return h;
+}
+function getExtraProjects(){
+  return Array.prototype.slice.call(document.querySelectorAll('#extraProjects .extra-project')).map(function(r){
+    return {
+      name:r.querySelector('.extra-project-select').value,
+      qty:num(r.querySelector('.extra-project-qty').value),
+      unit:r.querySelector('.extra-project-unit').value,
+      unitPrice:num(r.querySelector('.extra-project-price').value)
+    };
+  }).filter(function(x){return x.name});
+}
+function getProjectItems(d){
+  if(d){
+    if(Array.isArray(d.items)&&d.items.length)return d.items;
+    if(d.project)return [{name:d.project,qty:num(d.qty),unit:d.unit||'',unitPrice:num(d.unitPrice)}];
+    return [];
+  }
+  var items=[];
+  var first=$('projectSelect').value;
+  if(first){
+    items.push({name:first,qty:num($('qty').value),unit:$('unit').value,unitPrice:num($('unitPrice').value)});
+  }
+  return items.concat(getExtraProjects());
+}
+function updateExtraSubtotal(row){
+  var q=num(row.querySelector('.extra-project-qty').value);
+  var p=num(row.querySelector('.extra-project-price').value);
+  row.querySelector('.extra-project-subtotal').textContent='小計：'+money(q*p);
+}
+function addExtraProject(data){
+  data=data||{};
+  var row=document.createElement('div');row.className='extra-project';
+
+  var head=document.createElement('div');head.className='extra-project-head';
+  var title=document.createElement('div');title.className='extra-project-title';title.textContent='追加施工項目';
+  var del=document.createElement('button');del.type='button';del.className='remove';del.textContent='×';
+  del.onclick=function(){row.remove();calc()};
+  head.appendChild(title);head.appendChild(del);
+
+  var projectLabel=document.createElement('label');
+  projectLabel.textContent='施工項目';
+  var sel=document.createElement('select');sel.className='extra-project-select';
+  sel.innerHTML=projectPriceOptions(data.name||'');
+  projectLabel.appendChild(sel);
+
+  var grid=document.createElement('div');grid.className='extra-project-grid';
+  var ql=document.createElement('label');ql.textContent='數量';
+  var q=document.createElement('input');q.className='extra-project-qty';q.type='number';q.inputMode='decimal';q.min='0';q.step='any';q.placeholder='0';q.value=(data.qty===undefined||data.qty===null)?'':data.qty;ql.appendChild(q);
+
+  var ul=document.createElement('label');ul.textContent='單位';
+  var u=document.createElement('select');u.className='extra-project-unit';u.innerHTML=projectUnitOptions(data.unit||'m');ul.appendChild(u);
+
+  var pl=document.createElement('label');pl.className='extra-price-wrap';pl.textContent='單價';
+  var p=document.createElement('input');p.className='extra-project-price';p.type='number';p.inputMode='decimal';p.min='0';p.step='any';p.placeholder='0';p.value=(data.unitPrice===undefined||data.unitPrice===null)?'':data.unitPrice;pl.appendChild(p);
+
+  var subtotal=document.createElement('div');subtotal.className='extra-project-subtotal';subtotal.textContent='小計：'+money(0);
+
+  sel.onchange=function(){
+    var found=settings.prices.find(function(x){return x.name===sel.value});
+    if(found){p.value=found.price||'';if(found.unit)u.value=found.unit}
+    updateExtraSubtotal(row);calc();
+  };
+  q.oninput=function(){updateExtraSubtotal(row);calc()};
+  u.onchange=calc;
+  p.oninput=function(){updateExtraSubtotal(row);calc()};
+
+  grid.appendChild(ql);grid.appendChild(ul);grid.appendChild(pl);
+  row.appendChild(head);row.appendChild(projectLabel);row.appendChild(grid);row.appendChild(subtotal);
+  $('extraProjects').appendChild(row);
+  updateExtraSubtotal(row);
+}
 function getData(){
+  var items=getProjectItems();
   return {
     id:Date.now(),startDate:$('startDate').value,endDate:$('endDate').value,
     site:$('siteSelect').value,project:$('projectSelect').value,location:$('location').value.trim(),
     qty:num($('qty').value),unit:$('unit').value,unitPrice:num($('unitPrice').value),
-    note:'',employees:getEmployees()
+    items:items,note:'',employees:getEmployees()
   };
 }
 function totals(d){
-  d=d||getData();var income=d.qty*d.unitPrice;
+  d=d||getData();
+  var items=getProjectItems(d);
+  var income=items.reduce(function(s,x){return s+num(x.qty)*num(x.unitPrice)},0);
   var wages=(d.employees||[]).reduce(function(s,x){return s+num(x.wage)},0);
   var profit=income-wages;var margin=income>0?(profit/income*100):0;return {income:income,wages:wages,profit:profit,margin:margin};
 }
 function buildReport(d){
-  d=d||getData();var t=totals(d);
+  d=d||getData();var t=totals(d),items=getProjectItems(d);
   var e=(d.employees||[]).length?(d.employees||[]).map(function(x,i){
     return (i+1)+'. '+(x.name||'未命名')+'｜'+money(x.wage);
   }).join('\n'):'無';
+
+  var projectBlock='';
+  if(items.length<=1){
+    var one=items[0]||{name:d.project||'',qty:d.qty||0,unit:d.unit||'',unitPrice:d.unitPrice||0};
+    projectBlock=
+      '施工項目｜'+(one.name||'—')+'\n'+
+      '施工位置｜'+(d.location||'—')+'\n\n'+
+      '【數量與收入】\n'+
+      '施工數量｜'+num(one.qty)+' '+(one.unit||'')+'\n'+
+      '施工單價｜'+money(one.unitPrice)+'\n'+
+      '工程收入｜'+money(t.income)+'\n\n';
+  }else{
+    projectBlock=
+      '施工位置｜'+(d.location||'—')+'\n\n'+
+      '【施工項目】\n'+items.map(function(x,i){
+        return (i+1)+'. '+x.name+'\n   '+num(x.qty)+' '+(x.unit||'')+' × '+money(x.unitPrice)+' ＝ '+money(num(x.qty)*num(x.unitPrice));
+      }).join('\n')+
+      '\n工程收入合計｜'+money(t.income)+'\n\n';
+  }
+
   return '【成本控制回報】\n'+
     '━━━━━━━━━━\n'+
     '【工程資料】\n'+
     '施工日期｜'+(d.startDate||'—')+' ～ '+(d.endDate||'—')+'\n'+
-    '工地名稱｜'+(d.site||'—')+'\n'+
-    '施工項目｜'+(d.project||'—')+'\n'+
-    '施工位置｜'+(d.location||'—')+'\n\n'+
-    '【數量與收入】\n'+
-    '施工數量｜'+d.qty+' '+(d.unit||'')+'\n'+
-    '施工單價｜'+money(d.unitPrice)+'\n'+
-    '工程收入｜'+money(t.income)+'\n\n'+
+    '工地名稱｜'+(d.site||'—')+'\n'+projectBlock+
     '【員工工資】\n'+e+'\n'+
     '人工成本｜'+money(t.wages)+'\n\n'+
     '【損益結果】\n'+
@@ -484,6 +599,7 @@ $('projectSelect').onchange=function(){
 };
 ['startDate','endDate','location','qty','unit','unitPrice'].forEach(function(id){$(id).oninput=calc});
 $('addEmployee').onclick=function(){createEmployee('','')};
+$('addProject').onclick=function(){addExtraProject()};
 
 
 function getHistory(){try{return JSON.parse(localStorage.getItem('dashin_reports')||'[]')}catch(e){return []}}
@@ -491,7 +607,7 @@ function saveHistory(arr){localStorage.setItem('dashin_reports',JSON.stringify(a
 function loadHistory(){
   var arr=getHistory(),box=$('history');box.innerHTML='';
   var q=($('historySearch')?$('historySearch').value.trim().toLowerCase():'');
-  arr=arr.filter(function(d){var text=((d.site||'')+' '+(d.project||'')).toLowerCase();return !q||text.indexOf(q)>=0;});
+  arr=arr.filter(function(d){var text=((d.site||'')+' '+getProjectItems(d).map(function(x){return x.name}).join(' ')).toLowerCase();return !q||text.indexOf(q)>=0;});
   if(!arr.length){box.innerHTML='<div class="small">目前尚無儲存紀錄。</div>';refreshMonthStats();refreshAnalytics();return}
   arr.forEach(function(d){
     var t=totals(d),div=document.createElement('div');div.className='history-item';
@@ -505,9 +621,16 @@ function loadHistory(){
   refreshMonthStats();refreshAnalytics();
 }
 function loadReport(d){
-  ['startDate','endDate','location','qty','unit','unitPrice'].forEach(function(id){$(id).value=(d[id]===undefined||d[id]===null)?'':d[id]});
+  var items=getProjectItems(d);
+  var first=items[0]||{name:d.project||'',qty:d.qty||0,unit:d.unit||'m',unitPrice:d.unitPrice||0};
+  ['startDate','endDate','location'].forEach(function(id){$(id).value=(d[id]===undefined||d[id]===null)?'':d[id]});
   $('siteSelect').value=d.site||'';
-  $('projectSelect').value=d.project||'';
+  $('projectSelect').value=first.name||'';
+  $('qty').value=(first.qty===undefined||first.qty===null)?'':first.qty;
+  $('unit').value=first.unit||'m';
+  $('unitPrice').value=(first.unitPrice===undefined||first.unitPrice===null)?'':first.unitPrice;
+  $('extraProjects').innerHTML='';
+  items.slice(1).forEach(function(x){addExtraProject(x)});
   $('employeeList').innerHTML='';(d.employees||[]).forEach(function(x){createEmployee(x.name,x.wage)});
   if(!(d.employees||[]).length)createEmployee('','');
   calc();window.scrollTo({top:0,behavior:'smooth'});
@@ -520,7 +643,7 @@ $('saveReport').onclick=function(){
 $('clearAll').onclick=function(){
   if(!confirm('確定清空目前輸入內容？'))return;
   ['startDate','endDate','location','qty','unitPrice'].forEach(function(id){$(id).value=''});
-  $('siteSelect').value='';$('projectSelect').value='';$('employeeList').innerHTML='';createEmployee('','');calc();
+  $('siteSelect').value='';$('projectSelect').value='';$('extraProjects').innerHTML='';$('employeeList').innerHTML='';createEmployee('','');calc();
 };
 $('copyReport').onclick=function(){
   var text=buildReport();
@@ -551,7 +674,8 @@ function refreshAnalysisFilters(){
   var reports=getHistory(),siteSel=$('analysisSite'),projectSel=$('analysisProject');
   var oldSite=siteSel.value,oldProject=projectSel.value;
   var sites=uniqueSorted((settings.sites||[]).concat(reports.map(function(d){return d.site||''})));
-  var projects=uniqueSorted((settings.prices||[]).map(function(p){return p.name||''}).concat(reports.map(function(d){return d.project||''})));
+  var reportProjects=[];reports.forEach(function(d){getProjectItems(d).forEach(function(x){reportProjects.push(x.name||'')})});
+  var projects=uniqueSorted((settings.prices||[]).map(function(p){return p.name||''}).concat(reportProjects));
   siteSel.innerHTML='<option value="">全部工地</option>';
   sites.forEach(function(x){var o=document.createElement('option');o.value=x;o.textContent=x;siteSel.appendChild(o)});
   projectSel.innerHTML='<option value="">全部施工項目</option>';
@@ -563,7 +687,7 @@ function analysisRecords(){
   var site=$('analysisSite').value,project=$('analysisProject').value,month=$('analysisMonth').value,range=$('analysisRange').value;
   return getHistory().filter(function(d){
     if(site&&(d.site||'')!==site)return false;
-    if(project&&(d.project||'')!==project)return false;
+    if(project&&!getProjectItems(d).some(function(x){return x.name===project}))return false;
     if(range==='month'&&month&&(d.startDate||'').slice(0,7)!==month)return false;
     return true;
   });
@@ -619,8 +743,17 @@ function refreshAnalytics(){
   $('aProfit').style.color=a.profit<0?'#b91c1c':'#166534';
   var sites=groupAnalysis(arr,function(d){return d.site||'未命名工地'});
   renderRankRows('siteRanking',sites,'profit',function(r){return '收入 '+money(r.income)+'｜人工 '+money(r.wages)+'｜獲利率 '+r.margin.toFixed(1)+'%｜'+r.count+' 筆'},10);
-  var projects=groupAnalysis(arr,function(d){return d.project||'未填施工項目'});
-  renderRankRows('projectAnalysis',projects,'income',function(r){return '獲利 '+money(r.profit)+'｜人工 '+money(r.wages)+'｜獲利率 '+r.margin.toFixed(1)+'%｜'+r.count+' 筆'},10);
+  var pmap={};
+  arr.forEach(function(d){
+    var tt=totals(d),totalIncome=tt.income||0;
+    getProjectItems(d).forEach(function(x){
+      var n=x.name||'未填施工項目',inc=num(x.qty)*num(x.unitPrice);
+      if(!pmap[n])pmap[n]={name:n,count:0,income:0,wages:0,profit:0,margin:0};
+      pmap[n].count++;pmap[n].income+=inc;pmap[n].wages+=totalIncome>0?tt.wages*(inc/totalIncome):0;
+    });
+  });
+  var projects=Object.keys(pmap).map(function(k){var r=pmap[k];r.profit=r.income-r.wages;r.margin=r.income>0?r.profit/r.income*100:0;return r});
+  renderRankRows('projectAnalysis',projects,'income',function(r){return '獲利 '+money(r.profit)+'｜人工分攤 '+money(r.wages)+'｜獲利率 '+r.margin.toFixed(1)+'%｜'+r.count+' 筆'},10);
   renderEmployeeAnalysis(arr);renderSiteDataTable(arr);
 }
 ['analysisSite','analysisMonth','analysisProject','analysisRange'].forEach(function(id){$(id).onchange=refreshAnalytics});
@@ -674,10 +807,11 @@ function csvSafe(v){
 $('exportCsv').onclick=function(){
   var arr=getHistory();
   if(!arr.length){alert('目前沒有可匯出的歷史紀錄。');return}
-  var rows=[['日期','工地','施工項目','位置','數量','單位','單價','工程收入','員工工資','實際獲利','獲利率']];
+  var rows=[['日期','工地','施工項目明細','位置','工程收入','員工工資','實際獲利','獲利率']];
   arr.forEach(function(d){
     var t=totals(d);
-    rows.push([d.startDate||'',d.site||'',d.project||'',d.location||'',d.qty||0,d.unit||'',d.unitPrice||0,t.income,t.wages,t.profit,t.margin.toFixed(1)+'%']);
+    var detail=getProjectItems(d).map(function(x){return x.name+'｜'+num(x.qty)+' '+(x.unit||'')+' × '+num(x.unitPrice)+' = '+(num(x.qty)*num(x.unitPrice))}).join('；');
+    rows.push([d.startDate||'',d.site||'',detail,d.location||'',t.income,t.wages,t.profit,t.margin.toFixed(1)+'%']);
   });
   var csv='\uFEFF'+rows.map(function(r){return r.map(csvSafe).join(',')}).join('\r\n');
   var blob=new Blob([csv],{type:'text/csv;charset=utf-8;'});

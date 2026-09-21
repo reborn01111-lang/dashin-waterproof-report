@@ -1,4 +1,4 @@
-const CACHE_NAME = 'dashin-cost-control-v19-offline';
+const CACHE_NAME = 'dashin-cost-control-v21-original-multiselect';
 const APP_SHELL = [
   '/index.html',
   '/manifest.webmanifest',

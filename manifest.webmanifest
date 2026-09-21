@@ -2,7 +2,7 @@
   "id": "/index.html",
   "name": "包工成控",
   "short_name": "包工成控",
-  "description": "包工成控｜大信防水工程成本、工資、獲利與工地分析",
+  "description": "包工成控｜保留原有功能並新增多施工項目加總",
   "start_url": "/index.html",
   "scope": "/",
   "display": "standalone",
